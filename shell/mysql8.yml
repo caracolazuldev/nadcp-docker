@@ -1,0 +1,14 @@
+services:
+
+  mysql8-cli: 
+    image: mysql:8
+    command: 
+      - "/usr/bin/mysql"
+      - "-hmysql8"
+      - "-u${MYSQL_USER}"
+      - "-p${MYSQL_PASSWORD}"
+    environment:
+      - MYSQL_HOST
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD

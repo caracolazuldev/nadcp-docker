@@ -1,0 +1,11 @@
+services:
+
+  builder:
+    image: civisdk/make-do-runner
+    working_dir: /home/cividev
+    volumes:
+      - ./volumes/home:/home/cividev
+      - htdocs:/var/www/html
+      - ./app:/home/cividev/app
+      - ./conf:/home/cividev/conf
+    links: [ mysql57 ] # TODO RM

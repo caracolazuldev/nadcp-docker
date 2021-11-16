@@ -1,0 +1,11 @@
+services:
+
+  make-do:
+    image: civisdk/make-do-runner
+    build: 
+      context: docker/make-do
+      args:
+        LOGIN_UID: ${LOGIN_UID}
+    working_dir: /tmp/build
+    volumes:
+      - ./volumes/home/:/tmp/build

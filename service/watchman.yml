@@ -1,0 +1,7 @@
+services:
+
+  watchman:
+    image: icalialabs/watchman:4.9-alpine
+    volumes:
+      - htdocs:/var/www/html
+      - ./repos:/opt/app/repos
