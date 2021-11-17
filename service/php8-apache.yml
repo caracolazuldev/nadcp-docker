@@ -1,7 +1,7 @@
 services:
 
   php8-apache:
-    image: nadcp/php8-apache:1.0
+    image: nadcp/php8-apache
     build:
       context: service/php8-apache
       args:
