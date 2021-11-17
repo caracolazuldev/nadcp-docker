@@ -58,11 +58,11 @@ RUN pecl install imagick \
 #RUN pecl install xdebug \
 #  && docker-php-ext-enable xdebug
 
-ARG LOGIN_UID=33
-ARG LOGIN_GID=${LOGIN_UID}
-ARG USER_NAME=docker-user
+# ARG LOGIN_UID=33
+# ARG LOGIN_GID=${LOGIN_UID}
+# ARG USER_NAME=docker-user
 
-RUN addgroup --gid=$LOGIN_GID $USER_NAME
-RUN useradd --create-home --uid ${LOGIN_UID} --gid ${LOGIN_GID} ${USER_NAME}
+# RUN addgroup --gid=$LOGIN_GID $USER_NAME
+# RUN useradd --create-home --uid ${LOGIN_UID} --gid ${LOGIN_GID} ${USER_NAME}
 
 RUN a2enmod rewrite headers
