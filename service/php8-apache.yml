@@ -8,10 +8,10 @@ services:
         PHP_VERSION: 8.0
         # PHP_CONFIGURE_GD_OPTS: ${GD_OPTS_PRE_74}
         PHP_CONFIGURE_GD_OPTS: ${GD_OPTS_POST_74}
-        LOGIN_UID: ${LOGIN_UID:-1000}
+        # LOGIN_UID: ${LOGIN_UID:-1000}
     environment:
       - XDEBUG_CONFIG=client_host=${HOST_IP} # https://xdebug.org/docs/all_settings
-      - APACHE_RUN_USER=${USER_NAME:-docker-user}
+      # - APACHE_RUN_USER=${USER_NAME:-docker-user}
     ports:
       - 8080:8080
       - 9003:9003
