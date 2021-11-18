@@ -12,4 +12,5 @@ services:
       - web_htdocs:/var/www/html
       - ./volume/home:/home/cividev
       - ./conf:/home/cividev/conf
+      - ./volume/src:/var/src
 

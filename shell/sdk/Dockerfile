@@ -14,17 +14,17 @@ ARG USER_NAME=cividev
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   && apt-get install -y --no-install-recommends \
+  acl \
+  build-essential \
   bash-completion \
   default-mysql-client \
   git \
-  less \
-  nano \
+  less nano vim \
   nodejs \
+  pandoc \
   rsync \
   sudo \
-  unzip \
-  vim \
-  zip \
+  unzip zip \
   && rm -r /var/lib/apt/lists/*
 
 RUN addgroup --gid=$LOGIN_GID $USER_NAME
