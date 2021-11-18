@@ -2,6 +2,8 @@ ARG PHP_VERSION=8.0
 
 FROM php:${PHP_VERSION}-apache
 
+ARG PHP_CONFIGURE_GD_OPTS
+
 # Install apt packages
 #
 # ...required by php extensions:
@@ -9,6 +11,7 @@ FROM php:${PHP_VERSION}-apache
 # * imagick: libmagickwand-dev
 # * imap: libc-client-dev, libkrb5-dev
 # * intl: libicu-dev
+# * mbstring: libonig-dev
 # * soap: libxml2-dev
 # * zip: libzip-dev
 #
@@ -18,6 +21,7 @@ FROM php:${PHP_VERSION}-apache
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   && apt-get install -y --no-install-recommends \
+  acl \
   iproute2 \
   libc-client-dev \
   libicu-dev \
@@ -27,6 +31,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   libpng-dev \
   libxml2-dev \
   libzip-dev \
+  libonig-dev \
   msmtp-mta \
   wkhtmltopdf \
   && rm -r /var/lib/apt/lists/*
@@ -41,9 +46,11 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-install imap \
   && docker-php-ext-install intl \
   && docker-php-ext-install mysqli \
+  && docker-php-ext-install mbstring \
   && docker-php-ext-install opcache \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install soap \
+  && docker-php-ext-install xml \
   && docker-php-ext-install zip
 # used?? installed in buildkit...
 # && docker-php-ext-install ldap \
