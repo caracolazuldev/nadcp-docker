@@ -1,0 +1,55 @@
+#!/bin/bash
+
+alias status='git status .'
+
+git-rmt() {
+  git remote -v | sed 's/origin//' | sed 's/(.*)//' | sed 's/[[:space:]\n]//' | uniq | tr -d '\r\n'
+}
+
+alias sgit=sub-git
+alias sgits=git-subs
+
+# # #
+# perform git op on repo passed as first argument
+#
+sub-git () {
+  pushd $1 >/dev/null
+  shift 1
+  git $@
+  popd >/dev/null
+}
+
+# # #
+# Perform a git-operation on all sub-repos
+#
+git-subs() {
+  gitsubs_max_depth=12
+
+  echo searching for git repos
+  echo directory max-depth = $gitsubs_max_depth
+  echo executing git $@
+( # use a subshell and change the field-separator
+  # to allow for spaces in filenames
+  IFS=$'\n'
+  for d in `find . -maxdepth $gitsubs_max_depth -type d`
+  do
+    pushd $d >/dev/null;
+#   if directory contains a .git dir OR if is a bare-repo:
+    if [[ -d .git || $d == *.git && $(basename $d) != .git ]]; then
+      echo "\\><((((*> [  $d  ] <*))))></    "; echo
+      git $@;
+      echo ""
+    fi
+    popd &>/dev/null
+  done
+)
+}
+
+# # #
+# Re-write repo making path-argument the new root.
+# Other paths and changes are discarded.
+# i.e. run this on a copy of a repo to extract a path into a new repo.
+#
+git-extract-path() {
+  git filter-branch --subdirectory-filter $1 -- --all
+}

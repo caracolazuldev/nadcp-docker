@@ -1,0 +1,37 @@
+#!/bin/bash
+
+###
+# Databases
+
+dsn-get-db() {
+  grep -oP '(?<=/)+[A-z0-9]+(?=\?)+'
+}
+dsn-get-user() {
+  grep -oP '(?<=/)+[A-z0-9]+(?=:)+'
+}
+dsn-get-passwd() {
+  grep -oP '(?<=:)+[^/@\s]+(?=@)+'
+}
+
+alias which-conf="ls -hl ~/.my.cnf && echo 'show databases;' | mysql"
+
+my-conf()
+{
+    this_dir=`pwd`
+    cd `dirname $1`
+    rm -f ~/.my.cnf
+    ln -s `readlink -f "$1"` ~/.my.cnf
+    echo "show databases;" | mysql
+    cd $this_dir
+}
+
+format_sql() {
+  tr -d '\n' | \
+  sed 's/FROM/\nFROM/g' | \
+  sed 's/INNER JOIN/\nINNER JOIN/g' | \
+  sed 's/WHERE/\nWHERE/g' | \
+  sed 's/ORDER BY/\n ORDER BY/g' | \
+  sed 's/ on /\n  on /g' | \
+  sed 's/ AND /\n  AND /g' | \
+  sed 's/ OR /\n  OR /g'
+}

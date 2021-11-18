@@ -1,0 +1,130 @@
+#!/bin/bash
+
+# # #
+# Dirs
+#
+
+alias pd='pushd >/dev/null'
+
+alias nxt='pushd +1 >/dev/null'
+alias nx=nxt
+
+drs() {
+	curwd=$(dirname $(pwd))
+	# echo ${curwd} + sed s#${curwd}\/##
+	dirs -l -p | sed s#${curwd}\/##
+}
+
+load-dirs() {
+	dirs -c # clear ring
+	while read -r dirname 
+	do
+		pushd -n "$dirname" >/dev/null
+	done <<< "$(find * -maxdepth 0 -type d)"
+	drs
+}
+
+follow() {
+	follow=$(readlink -f "$1")
+	cd "${follow}" || return 1
+}
+
+# # #
+# locate an executable and cd
+#
+which-dir() {
+	file_location=$(which "$1")
+	if [ -L "$file_location" ]; then
+		file_location=$(readlink -f "$file_location")
+	fi
+	dir_location=$(dirname "$file_location")
+	pushd "$dir_location" >/dev/null
+}
+
+# # #
+# Files
+#
+
+alias grep='grep'${COLOR_AUTO}
+
+alias p='cat'
+
+f() {
+	find . -name "$*"
+}
+
+s() {
+	grep -Rni --exclude-dir .git --exclude-dir dist --exclude-dir build --exclude-dir vendor "$*"
+}
+
+# alias ls='ls -FAohi'
+alias ls='ls -CFp'${COLOR_AUTO}
+alias l='ls -hl'
+alias ll='l -a'
+
+alias lls='tree -L 2'
+alias llls='tree -L 3'
+alias lllls='tree -L 4'
+alias ld='tree -dL 2'
+alias la='ls -a'
+alias lt='l -rt'
+
+# # #
+# .git dirs are pruned, -o (or) files are printed
+files-here() {	
+	find . -path '*/.git' -prune -o -type f
+}
+
+find-links() {
+  find -L "$2" -samefile "$1" 2>/dev/null
+}
+
+# # #
+# get the most recently modified file
+last-modified() {
+  fullpath=$(find "$1" -maxdepth 1 -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -f2- -d" ")
+  basename "$fullpath"
+}
+
+# # #
+# Consolidate duplicate files
+dedupe() {
+	args=${*:-.}
+	rdfind -makehardlinks true -outputname dedupe.rpt $args
+}
+
+# # # 
+# Web Archive
+#
+
+warc() {
+	wget \
+    --mirror \
+    --page-requisites \
+    --html-extension \
+    --convert-links \
+    --execute robots=off \
+    --random-wait \
+    "$1"
+}
+    # --directory-prefix=. \
+    # --span-hosts \
+    # --warc-file=w.arc \
+    # --warc-cdx \
+    # --domains=example.com,www.example.com,cdn.example.com \
+    # --user-agent=Mozilla (mailto:archiver@petekeen.net)\
+ 
+# Option List, wget
+#     --mirror turns on a bunch of options appropriate for mirroring a whole website
+#     --warc-file turns on WARC output to the specified file
+#     --warc-cdx tells wget to dump out an index file for our new WARC file
+#     --page-requisites will grab all of the linked resources necessary to render the page (images, css, javascript, etc)
+#     --html-extension appends .html to the files when appropriate
+#     --convert-links will turn links into local links as appropriate
+#     --execute robots=off turns off wget's automatic robots.txt checking
+#     --span-hosts allows it to follow links to other domain names
+#     --domains includes a comma-separated list of domains that wget should include in the archive
+#     --user-agent overrides wget's default user agent
+#     --wait tells wget to wait ten seconds between each request
+#     --random-wait will randomize that wait to between 5 and 15 seconds
+#     http://www.example.com is the website we want to archive
