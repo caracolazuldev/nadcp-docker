@@ -18,6 +18,3 @@ services:
       - 9000:9000
     volumes:
       - web_htdocs:/var/www/html
-    networks:
-      - stack
-

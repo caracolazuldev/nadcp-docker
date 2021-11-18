@@ -10,8 +10,6 @@ services:
         FROM_IMAGE: nadcp/php8-apache:latest
     volumes:
       - web_htdocs:/var/www/html
-      - ./volumes/home:/home/cividev
+      - ./volume/home:/home/cividev
       - ./conf:/home/cividev/conf
-    networks:
-      - stack
 

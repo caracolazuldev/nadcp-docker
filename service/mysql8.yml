@@ -11,5 +11,3 @@ services:
       - MYSQL_PASSWORD
     volumes:
       - web_db_var_lib:/var/lib/mysql
-    networks:
-      - stack
