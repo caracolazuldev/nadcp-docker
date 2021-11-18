@@ -22,7 +22,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   less nano vim \
   nodejs \
   pandoc \
-  rsync \
+  ssh rsync \
   sudo \
   unzip zip \
   && rm -r /var/lib/apt/lists/*
