@@ -1,3 +1,0 @@
-networks:
-  stack:
-    name: "${COMPOSE_PROJECT_NAME}_web"
