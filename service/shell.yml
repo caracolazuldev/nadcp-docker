@@ -4,7 +4,7 @@ services:
     image: nadcp/sdk
     tty: true
     volumes:
+      - web_htdocs:/var/www/html
       - ./volume/home:/home/cividev
       - ./config:/home/cividev/config
-      - web_htdocs:/var/www/html
-      - ./volume/src:/var/src
+      - ./src:/var/src
