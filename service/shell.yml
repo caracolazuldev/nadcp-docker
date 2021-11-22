@@ -1,0 +1,10 @@
+services:
+
+  shell:
+    image: nadcp/sdk
+    tty: true
+    volumes:
+      - ./volume/home:/home/cividev
+      - ./config:/home/cividev/config
+      - web_htdocs:/var/www/html
+      - ./volume/src:/var/src

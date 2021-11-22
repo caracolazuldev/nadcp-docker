@@ -32,7 +32,7 @@ RUN useradd --create-home --uid ${LOGIN_UID} --gid ${LOGIN_GID} \
   --home-dir /home/${USER_NAME} ${USER_NAME}
 COPY sudo /etc/sudoers.d/${USER_NAME}
 
+RUN adduser ${USER_NAME} www-data
+
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
-
-CMD ["/bin/bash", "--login"]
