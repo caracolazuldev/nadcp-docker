@@ -6,5 +6,4 @@ services:
     volumes:
       - web_htdocs:/var/www/html
       - ./volume/home:/home/cividev
-      - ./config:/home/cividev/config
       - ./src:/var/src
