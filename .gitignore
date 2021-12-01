@@ -1,1 +1,5 @@
-conf/web.env
+/volume/home/*
+/volume/arch/*dump.sql
+.*-compose.yml
+.*.env
+.vscode
