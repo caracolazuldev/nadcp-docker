@@ -27,6 +27,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   unzip zip \
   && rm -r /var/lib/apt/lists/*
 
+USER root
+WORKDIR /root
+RUN git clone https://github.com/ginkgomzd/make-do.git
+RUN make -C make-do install && rm -rf make-do
+
 RUN addgroup --gid=$LOGIN_GID $USER_NAME
 RUN useradd --create-home --uid ${LOGIN_UID} --gid ${LOGIN_GID} \
   --home-dir /home/${USER_NAME} ${USER_NAME}
