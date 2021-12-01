@@ -3,6 +3,7 @@ services:
   shell:
     image: nadcp/sdk
     tty: true
+    command: bash
     volumes:
       - web_htdocs:/var/www/html
       - ./volume/home:/home/cividev
