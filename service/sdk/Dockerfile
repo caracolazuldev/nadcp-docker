@@ -29,8 +29,24 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 USER root
 WORKDIR /root
+
+RUN test -d ~/.ssh || mkdir ~/.ssh
+RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+
 RUN git clone https://github.com/ginkgomzd/make-do.git
 RUN make -C make-do install && rm -rf make-do
+
+COPY composer.mk .
+COPY drush.mk .
+COPY wp-cli.mk .
+
+RUN make -f composer.mk
+RUN make -f drush.mk
+RUN make -f wp-cli.mk
+RUN rm *.mk
+
+RUN curl -sL https://download.civicrm.org/cv/cv.phar -o /usr/local/bin/cv \
+&& chmod 755 /usr/local/bin/cv
 
 RUN addgroup --gid=$LOGIN_GID $USER_NAME
 RUN useradd --create-home --uid ${LOGIN_UID} --gid ${LOGIN_GID} \
@@ -41,3 +57,8 @@ RUN adduser ${USER_NAME} www-data
 
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
+
+RUN test -d ~/.ssh || mkdir ~/.ssh
+RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+
+RUN drush init -y
