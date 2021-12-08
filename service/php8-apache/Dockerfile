@@ -55,6 +55,7 @@ RUN docker-php-ext-install bcmath \
 # used?? installed in buildkit...
 # && docker-php-ext-install ldap \
 
+COPY limits.ini "${PHP_INI_DIR}/conf.d/"
 COPY etc_apache2_ports.conf /etc/apache2/ports.conf
 COPY etc_apache2_sites-available_000-default.conf /etc/apache2/sites-available/000-default.conf
 
