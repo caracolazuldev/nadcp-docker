@@ -1,0 +1,12 @@
+services:
+
+  upgrade:
+    image: nadcp/sdk
+    tty: true
+    command: bash
+    working_dir: /var/src/upgrade
+    volumes:
+      - web_htdocs:/var/www/html
+      - ./volume/home:/home/cividev
+      - ./src:/var/src
+      - drupal_htdocs:/var/legacy/drupal_htdocs
