@@ -4,9 +4,9 @@
 # Dirs
 #
 
-alias pd='pushd >/dev/null'
+alias pd='pushd'
 
-alias nxt='pushd +1 >/dev/null'
+alias nxt='pushd +1'
 alias nx=nxt
 
 drs() {
