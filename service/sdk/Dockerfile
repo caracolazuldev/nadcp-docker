@@ -27,6 +27,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   unzip zip \
   && rm -r /var/lib/apt/lists/*
 
+COPY limits.ini "${PHP_INI_DIR}/conf.d/"
+COPY logging.ini "${PHP_INI_DIR}/conf.d/"
+COPY xdebug.ini "${PHP_INI_DIR}/conf.d/"
+
 USER root
 WORKDIR /root
 
