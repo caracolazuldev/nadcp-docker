@@ -1,3 +1,5 @@
+
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -93,5 +95,25 @@ fi
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+
+# Include Drush bash customizations.
+if [ -f "/home/cividev/.drush/drush.bashrc" ] ; then
+  source /home/cividev/.drush/drush.bashrc
+fi
+
+
+# Include Drush completion.
+
+if [ -f "/home/cividev/.drush/drush.complete.sh" ] ; then
+  source /home/cividev/.drush/drush.complete.sh
+fi
+
+
+# Include Drush prompt customizations.
+
+if [ -f "/home/cividev/.drush/drush.prompt.sh" ] ; then
+  source /home/cividev/.drush/drush.prompt.sh
 fi
 
