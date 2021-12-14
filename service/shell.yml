@@ -3,8 +3,8 @@ services:
   shell:
     image: nadcp/sdk
     tty: true
+    entrypoint: sh -c
     command: bash
-    working_dir: "${WORKING_DIR:-/home/cividev}"
     volumes:
       - web_htdocs:/var/www/html
       - ./volume/home:/home/cividev
