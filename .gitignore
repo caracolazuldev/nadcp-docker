@@ -3,3 +3,4 @@
 .*-compose.yml
 .*.env
 .vscode
+src/
