@@ -1,0 +1,10 @@
+services:
+
+  facls:
+    image: nadcp/sdk
+    command: make facls
+    working_dir: /var/src/upgrade
+    volumes:
+      - web_htdocs:/var/www/html
+      - ./volume/home:/home/cividev
+      - ./src:/var/src
