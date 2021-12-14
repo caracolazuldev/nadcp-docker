@@ -9,4 +9,4 @@ facls:
 	make STACK=web TASK=facls run
 
 shell:
-	make STACK=web TASK=shell run WORKING_DIR=/var/src
+	STACK=web WORKING_DIR=/var/src make run TASK=shell
