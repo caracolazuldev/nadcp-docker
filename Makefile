@@ -14,3 +14,16 @@ shell:
 db:
 	STACK=db make run TASK=db
 
+#
+# DEV Utils
+#
+
+deploy-theme:
+	STACK=web WORKING_DIR=/var/src/rise-twenty-two make run TASK=shell RUN_CMD='make -f dev-deploy.mk deploy compile'
+
+
+deploy-api-plugin:
+	STACK=web WORKING_DIR=/var/src/manifold-checkout make run TASK=shell RUN_CMD='make -f dev-deploy.mk deploy'
+
+flush:
+	STACK=web WORKING_DIR=/var/www/html make run TASK=shell RUN_CMD='wp cache flush'
