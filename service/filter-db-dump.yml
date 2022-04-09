@@ -1,0 +1,11 @@
+services:
+
+  filter-db-dump:
+    image: nadcp/sdk
+    working_dir: /tmp/upgrade
+    command: make -f filter-db-dump.mk
+    volumes:
+      - ./src/upgrade:/tmp/upgrade
+      - ./volume/arch:/tmp/upgrade/arch
+      - ./volume/home:/home/cividev
+      
