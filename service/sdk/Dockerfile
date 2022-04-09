@@ -49,8 +49,11 @@ RUN make -f drush.mk
 RUN make -f wp-cli.mk
 RUN rm *.mk
 
-RUN curl -sL https://download.civicrm.org/cv/cv.phar -o /usr/local/bin/cv \
+RUN curl -sSL https://download.civicrm.org/cv/cv.phar -o /usr/local/bin/cv \
 && chmod 755 /usr/local/bin/cv
+
+RUN curl -sSL https://download.civicrm.org/civix/civix.phar -o /usr/local/bin/civix \
+&& chmod 755 /usr/local/bin/civix
 
 RUN addgroup --gid=$LOGIN_GID $USER_NAME
 RUN useradd --create-home --uid ${LOGIN_UID} --gid ${LOGIN_GID} \
