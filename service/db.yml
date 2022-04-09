@@ -4,7 +4,7 @@ services:
     image: mysql:8
     command: 
       - "/usr/bin/mysql"
-      - "-hmysql8"
+      - "-h${MYSQL_HOST}"
       - "-u${MYSQL_USER}"
       - "-p${MYSQL_PASSWORD}"
       - "members"

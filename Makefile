@@ -10,3 +10,7 @@ facls:
 
 shell:
 	STACK=web WORKING_DIR=/var/src make run TASK=shell
+
+db:
+	STACK=db make run TASK=db
+
