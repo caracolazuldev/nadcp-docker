@@ -1,6 +1,10 @@
 /volume/home/*
-/volume/arch/*dump.sql
-.*-compose.yml
-.*.env
+/volume/arch/*dump*sql
+/volume/arch/*tgz
+*-compose.yml
+.env
+docker/*/*env
+.active
 .vscode
 src/
+conf/*
