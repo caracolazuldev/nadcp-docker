@@ -1,5 +1,0 @@
-volumes:
-  web_db_var_lib:
-  web_htdocs:
-  drupal_htdocs:
-  

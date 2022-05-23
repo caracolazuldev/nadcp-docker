@@ -1,5 +1,4 @@
 services:
-
   shell:
     image: nadcp/sdk
     tty: true

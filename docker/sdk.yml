@@ -3,7 +3,7 @@ services:
   sdk:
     image: nadcp/sdk
     build:
-      context: service/sdk
+      context: docker/sdk
       args:
         LOGIN_UID: ${LOGIN_UID:-1000}
         LOGIN_GID: ${LOGIN_GID:-1000}
