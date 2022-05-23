@@ -18,3 +18,8 @@ services:
       - 9000:9000
     volumes:
       - web_htdocs:/var/www/html
+    env_file:
+      - docker/php8.env
+
+volumes:
+  web_htdocs:

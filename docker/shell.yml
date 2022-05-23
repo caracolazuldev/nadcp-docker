@@ -8,3 +8,7 @@ services:
       - web_htdocs:/var/www/html
       - ./volume/home:/home/cividev
       - ./src:/var/src
+      - ./volume/arch:/var/arch
+
+volumes:
+  web_htdocs: {}

@@ -9,6 +9,11 @@ services:
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
+    env_file: 
+      - docker/mysql8.env
     command: --skip-log-bin
     volumes:
       - web_db_var_lib:/var/lib/mysql
+
+volumes:
+  web_db_var_lib:
