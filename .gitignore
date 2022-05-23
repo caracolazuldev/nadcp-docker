@@ -3,6 +3,7 @@
 /volume/arch/*tgz
 *-compose.yml
 .env
+*.stack.env
 docker/*/*env
 .active
 .vscode
