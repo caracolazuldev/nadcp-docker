@@ -6,10 +6,10 @@ ${MANAGED_DIRS}:
 	mkdir $@
 
 facls:
-	make STACK=web TASK=facls run
+	TASK=shell WORKING_DIR=/var/src/nadcp-stage make run RUN_CMD='make -f src/facls.mk dev'
 
 shell:
-	STACK=web WORKING_DIR=/var/src make run TASK=shell
+	WORKING_DIR=/var/src TASK=shell make run
 
 db:
 	STACK=db make run TASK=db
