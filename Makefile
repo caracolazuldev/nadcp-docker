@@ -19,11 +19,14 @@ db:
 #
 
 deploy-theme:
-	STACK=web WORKING_DIR=/var/src/rise-twenty-two make run TASK=shell RUN_CMD='make -f dev-deploy.mk deploy compile'
+	STACK=dev WORKING_DIR=/var/src/rise-twenty-two make run TASK=shell RUN_CMD='make -f dev-deploy.mk deploy compile'
 
 
 deploy-api-plugin:
-	STACK=web WORKING_DIR=/var/src/manifold-checkout make run TASK=shell RUN_CMD='make -f dev-deploy.mk deploy'
+	STACK=dev WORKING_DIR=/var/src/manifold-checkout make run TASK=shell RUN_CMD='make -f dev-deploy.mk deploy'
+
+watch-vue:
+	STACK=dev WORKING_DIR=/var/src/rise-twenty-two make run TASK=shell RUN_CMD='npm run watch-vue'
 
 flush:
-	STACK=web WORKING_DIR=/var/www/html make run TASK=shell RUN_CMD='wp cache flush'
+	STACK=dev WORKING_DIR=/var/www/html make run TASK=shell RUN_CMD='wp cache flush'
