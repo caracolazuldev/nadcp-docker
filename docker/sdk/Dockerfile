@@ -1,4 +1,4 @@
-ARG FROM_IMAGE=php-apache:8.0
+ARG FROM_IMAGE
 FROM ${FROM_IMAGE}
 
 # NB: arguments are scoped by build-stage

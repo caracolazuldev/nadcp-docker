@@ -7,4 +7,4 @@ services:
       args:
         LOGIN_UID: ${LOGIN_UID:-1000}
         LOGIN_GID: ${LOGIN_GID:-1000}
-        FROM_IMAGE: nadcp/php8-apache:latest
+        FROM_IMAGE: nadcp/php8-apache-buster:latest
