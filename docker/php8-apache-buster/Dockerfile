@@ -36,6 +36,16 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   wkhtmltopdf \
   && rm -r /var/lib/apt/lists/*
 
+ARG HTML_TO_PDF_VER=0.12.6-1
+ARG HTML_TO_PDF_DEB=wkhtmltox_${HTML_TO_PDF_VER}.buster_amd64.deb
+
+RUN curl -sSL https://github.com/wkhtmltopdf/packaging/releases/download/${HTML_TO_PDF_VER}/${HTML_TO_PDF_DEB} -O
+RUN apt-get update \
+  && export DEBIAN_FRONTEND=noninteractive \
+  && apt-get install -y --no-install-recommends ./${HTML_TO_PDF_DEB} \
+  && rm ./${HTML_TO_PDF_DEB} \
+  && rm -r /var/lib/apt/lists/*
+
 # Install php extensions (curl, json, mbstring, openssl, posix, phar
 # are installed already and don't need to be specified here)
 RUN docker-php-ext-install bcmath \
