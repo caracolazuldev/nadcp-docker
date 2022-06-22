@@ -1,7 +1,7 @@
 services:
 
   mysql8: 
-    image: mysql:8
+    image: mariadb:10.7
     expose:
       - 3306
     environment:
