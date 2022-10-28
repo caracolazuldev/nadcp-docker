@@ -1,0 +1,2 @@
+STACK_SERVICES ?= mysql8-cli
+ENV_INCLUDES ?= conf/mysql.local.env

@@ -1,0 +1,17 @@
+services:
+
+  shell:
+    image: nadcp/sdk-php8
+    tty: true
+    entrypoint: sh -c
+    command: bash
+    volumes:
+      - web_htdocs:/var/www/html
+      - ./volume/home:/home/cividev
+      - ./src:/var/src
+      - ./volume/arch:/var/arch
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  web_htdocs:

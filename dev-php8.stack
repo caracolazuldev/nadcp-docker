@@ -1,0 +1,2 @@
+STACK_SERVICES ?= php8-apache-buster mailhog mariadb
+ENV_INCLUDES ?= conf/project.env

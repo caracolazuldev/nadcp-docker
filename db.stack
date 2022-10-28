@@ -1,2 +1,0 @@
-STACK_SERVICES ?= db
-ENV_INCLUDES ?= stack/db.env

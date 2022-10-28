@@ -1,6 +1,7 @@
 services:
+
   shell:
-    image: nadcp/sdk
+    image: nadcp/sdk-php7
     tty: true
     entrypoint: sh -c
     command: bash
@@ -9,6 +10,8 @@ services:
       - ./volume/home:/home/cividev
       - ./src:/var/src
       - ./volume/arch:/var/arch
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
-  web_htdocs: {}
+  web_htdocs:
