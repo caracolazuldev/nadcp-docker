@@ -3,7 +3,7 @@ services:
   php8-apache:
     image: nadcp/php8-apache
     build:
-      context: docker/php8-apache
+      context: docker/php-apache
       args:
         PHP_VERSION: 8.0
         # PHP_CONFIGURE_GD_OPTS: ${GD_OPTS_PRE_74}
@@ -19,7 +19,9 @@ services:
     volumes:
       - web_htdocs:/var/www/html
     env_file:
-      - docker/php8.env
+      - docker/php8-apache.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   web_htdocs:

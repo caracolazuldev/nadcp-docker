@@ -1,2 +1,0 @@
-STACK_SERVICES ?= php8-apache mysql8
-ENV_INCLUDES ?= conf/project.env

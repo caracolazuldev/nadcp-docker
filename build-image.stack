@@ -1,0 +1,2 @@
+STACK_SERVICES ?= php7-apache sdk-php7 php8-apache sdk-php8
+ENV_INCLUDES ?= conf/project.env
