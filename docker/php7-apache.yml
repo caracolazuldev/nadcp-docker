@@ -17,11 +17,8 @@ services:
       - 9003:9003
       - 9000:9000
     volumes:
-      - web_htdocs:/var/www/html
+      - ./volume/htdocs:/var/www/html
     env_file:
       - docker/php7-apache.env
     extra_hosts:
       - "host.docker.internal:host-gateway"
-  
-volumes:
-  web_htdocs:
