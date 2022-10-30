@@ -37,7 +37,7 @@ WORKDIR /root
 RUN test -d ~/.ssh || mkdir ~/.ssh
 RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
-RUN git clone https://github.com/ginkgomzd/make-do.git
+RUN git clone https://github.com/caracolazuldev/make-do.git
 RUN make -C make-do install && rm -rf make-do
 
 COPY composer.mk .
