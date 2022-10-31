@@ -61,6 +61,8 @@ RUN useradd --create-home --uid ${LOGIN_UID} --gid ${LOGIN_GID} \
 COPY sudo /etc/sudoers.d/${USER_NAME}
 
 RUN adduser ${USER_NAME} www-data
+# redundant but redundant does not hurt
+RUN adduser ${USER_NAME} sudo 
 
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
