@@ -4,7 +4,7 @@ services:
       args:
         PHP_CONFIGURE_GD_OPTS: --with-jpeg
         PHP_VERSION: '7.4'
-      context: /home/mzd/Lab/nadcp/docker/php-apache
+      context: ./docker/php-apache
     environment:
       GD_OPTS_POST_74: --with-jpeg
       HOST_IP: 192.168.10.1
@@ -22,13 +22,13 @@ services:
     - published: 9003
       target: 9003
     volumes:
-    - /home/mzd/Lab/nadcp/volume/htdocs:/var/www/html:rw
+    - ./volume/htdocs:/var/www/html:rw
   php8-apache:
     build:
       args:
         PHP_CONFIGURE_GD_OPTS: --with-jpeg
         PHP_VERSION: '8.0'
-      context: /home/mzd/Lab/nadcp/docker/php-apache
+      context: ./docker/php-apache
     environment:
       GD_OPTS_POST_74: --with-jpeg
       HOST_IP: 192.168.10.1
@@ -46,14 +46,14 @@ services:
     - published: 9003
       target: 9003
     volumes:
-    - /home/mzd/Lab/nadcp/volume/htdocs:/var/www/html:rw
+    - ./volume/htdocs:/var/www/html:rw
   sdk-php7:
     build:
       args:
         FROM_IMAGE: nadcp/php7-apache:latest
         LOGIN_GID: '1000'
         LOGIN_UID: '1000'
-      context: /home/mzd/Lab/nadcp/docker/sdk
+      context: ./docker/sdk
     image: nadcp/sdk-php7
   sdk-php8:
     build:
@@ -61,7 +61,7 @@ services:
         FROM_IMAGE: nadcp/php8-apache:latest
         LOGIN_GID: '1000'
         LOGIN_UID: '1000'
-      context: /home/mzd/Lab/nadcp/docker/sdk
+      context: ./docker/sdk
     image: nadcp/sdk-php8
 version: '3.9'
 

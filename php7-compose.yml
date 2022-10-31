@@ -23,7 +23,7 @@ services:
       args:
         PHP_CONFIGURE_GD_OPTS: --with-jpeg
         PHP_VERSION: '7.4'
-      context: /home/mzd/Lab/nadcp/docker/php-apache
+      context: ./docker/php-apache
     environment:
       GD_OPTS_POST_74: --with-jpeg
       HOST_IP: 192.168.10.1
@@ -41,7 +41,7 @@ services:
     - published: 9003
       target: 9003
     volumes:
-    - /home/mzd/Lab/nadcp/volume/htdocs:/var/www/html:rw
+    - ./volume/htdocs:/var/www/html:rw
   shell:
     command: bash
     entrypoint: sh -c
@@ -50,9 +50,9 @@ services:
     image: nadcp/sdk-php7
     tty: true
     volumes:
-    - /home/mzd/Lab/nadcp/volume/home:/home/cividev:rw
-    - /home/mzd/Lab/nadcp/volume/arch:/var/arch:rw
-    - /home/mzd/Lab/nadcp/volume/htdocs:/var/www/html:rw
+    - ./volume/home:/home/cividev:rw
+    - ./volume/arch:/var/arch:rw
+    - ./volume/htdocs:/var/www/html:rw
 version: '3.9'
 volumes:
   mariadb_var_lib: {}
