@@ -9,5 +9,6 @@ services:
       - ./volume/htdocs:/var/www/html
       - ./volume/home:/home/cividev
       - ./volume/arch:/var/arch
+      - ./volume/src:/var/src
     extra_hosts:
       - "host.docker.internal:host-gateway"
