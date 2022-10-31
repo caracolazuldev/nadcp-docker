@@ -9,10 +9,10 @@ services:
   mariadb:
     command: --skip-log-bin
     environment:
-      MYSQL_DATABASE: null
-      MYSQL_PASSWORD: rSERxq]T
-      MYSQL_ROOT_PASSWORD: null
-      MYSQL_USER: nadcp
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
     expose:
     - '3306'
     image: mariadb:10.7
