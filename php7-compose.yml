@@ -1,0 +1,59 @@
+services:
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+    - published: 1025
+      target: 1025
+    - published: 8025
+      target: 8025
+  mariadb:
+    command: --skip-log-bin
+    environment:
+      MYSQL_DATABASE: null
+      MYSQL_PASSWORD: rSERxq]T
+      MYSQL_ROOT_PASSWORD: null
+      MYSQL_USER: nadcp
+    expose:
+    - '3306'
+    image: mariadb:10.7
+    volumes:
+    - mariadb_var_lib:/var/lib/mysql:rw
+  php7-apache:
+    build:
+      args:
+        PHP_CONFIGURE_GD_OPTS: --with-jpeg
+        PHP_VERSION: '7.4'
+      context: /home/mzd/Lab/nadcp/docker/php-apache
+    environment:
+      GD_OPTS_POST_74: --with-jpeg
+      HOST_IP: 192.168.10.1
+      LOGIN_GID: '1000'
+      LOGIN_UID: '1000'
+      XDEBUG_CONFIG: client_host=192.168.10.1
+    extra_hosts:
+      host.docker.internal: host-gateway
+    image: nadcp/php7-apache
+    ports:
+    - published: 8080
+      target: 8080
+    - published: 9000
+      target: 9000
+    - published: 9003
+      target: 9003
+    volumes:
+    - /home/mzd/Lab/nadcp/volume/htdocs:/var/www/html:rw
+  shell:
+    command: bash
+    entrypoint: sh -c
+    extra_hosts:
+      host.docker.internal: host-gateway
+    image: nadcp/sdk-php7
+    tty: true
+    volumes:
+    - /home/mzd/Lab/nadcp/volume/home:/home/cividev:rw
+    - /home/mzd/Lab/nadcp/volume/arch:/var/arch:rw
+    - /home/mzd/Lab/nadcp/volume/htdocs:/var/www/html:rw
+version: '3.9'
+volumes:
+  mariadb_var_lib: {}
+
