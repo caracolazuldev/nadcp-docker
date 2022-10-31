@@ -1,9 +1,0 @@
-services:
-
-  mysql57-cli: 
-    image: mysql:5.7
-    command: 
-      - "/usr/bin/mysql"
-      - "-h${MYSQL_HOST}"
-      - "-u${MYSQL_USER}"
-      - "-p${MYSQL_PASSWORD}"
