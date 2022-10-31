@@ -53,6 +53,7 @@ services:
     - ./volume/home:/home/cividev:rw
     - ./volume/arch:/var/arch:rw
     - ./volume/htdocs:/var/www/html:rw
+    - ./volume/src:/var/src:rw
 version: '3.9'
 volumes:
   mariadb_var_lib: {}
