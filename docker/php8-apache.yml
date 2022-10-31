@@ -1,7 +1,7 @@
 services:
 
   php8-apache:
-    image: nadcp/php8-apache
+    image: nadcp-apache:php8
     build:
       context: docker/php-apache
       args:

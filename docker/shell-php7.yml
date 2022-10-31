@@ -1,7 +1,7 @@
 services:
 
   shell:
-    image: nadcp/sdk-php7
+    image: nadcp-sdk:php7
     tty: true
     entrypoint: sh -c
     command: bash

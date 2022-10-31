@@ -33,3 +33,18 @@ flush:
 
 build-containers:
 	$(MAKE) activate STACK=build-image dkc-build
+
+release:
+	${MAKE} deactivate
+	${MAKE} activate STACK=build-image
+	cp docker-compose.yml build-compose.yml
+	${MAKE} deactivate
+	${MAKE} activate STACK=dev-php7
+	cp docker-compose.yml php7-compose.yml
+	${MAKE} deactivate
+	${MAKE} activate STACK=dev-php8
+	cp docker-compose.yml php8-compose.yml
+	sed -i 's#$(shell pwd)#.#g' *-compose.yml
+	$(MAKE) deactivate
+	$(info NB: replace environment vars in compose files.)	
+

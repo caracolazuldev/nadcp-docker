@@ -1,7 +1,7 @@
 services:
 
   php7-apache:
-    image: nadcp/php7-apache
+    image: nadcp-apache:php7
     build:
       context: docker/php-apache
       args:

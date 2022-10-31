@@ -13,7 +13,7 @@ services:
       XDEBUG_CONFIG: client_host=192.168.10.1
     extra_hosts:
       host.docker.internal: host-gateway
-    image: nadcp/php7-apache
+    image: nadcp-apache:php7
     ports:
     - published: 8080
       target: 8080
@@ -37,7 +37,7 @@ services:
       XDEBUG_CONFIG: client_host=192.168.10.1
     extra_hosts:
       host.docker.internal: host-gateway
-    image: nadcp/php8-apache
+    image: nadcp-apache:php8
     ports:
     - published: 8080
       target: 8080
@@ -50,18 +50,18 @@ services:
   sdk-php7:
     build:
       args:
-        FROM_IMAGE: nadcp/php7-apache:latest
+        FROM_IMAGE: nadcp-apache:php7
         LOGIN_GID: '1000'
         LOGIN_UID: '1000'
       context: ./docker/sdk
-    image: nadcp/sdk-php7
+    image: nadcp-sdk:php7
   sdk-php8:
     build:
       args:
-        FROM_IMAGE: nadcp/php8-apache:latest
+        FROM_IMAGE: nadcp-apache:php8
         LOGIN_GID: '1000'
         LOGIN_UID: '1000'
       context: ./docker/sdk
-    image: nadcp/sdk-php8
+    image: nadcp-sdk:php8
 version: '3.9'
 
