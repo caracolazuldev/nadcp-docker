@@ -2,6 +2,7 @@
 /volume/arch/*dump*sql
 /volume/arch/*tgz
 /volume/src/*
+/volume/htdocs/*
 *-compose.yml
 .env
 *.stack.env
