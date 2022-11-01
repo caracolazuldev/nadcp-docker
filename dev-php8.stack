@@ -1,2 +1,2 @@
-STACK_SERVICES ?= php8-apache mailhog shell-php8.yml mariadb
+STACK_SERVICES ?= php8-apache mailhog shell-php8.yml mysql8
 ENV_INCLUDES ?= conf/project.env

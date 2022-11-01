@@ -6,7 +6,7 @@ services:
       target: 1025
     - published: 8025
       target: 8025
-  mariadb:
+  mysql8:
     command: --skip-log-bin
     environment:
       - MYSQL_ROOT_PASSWORD
@@ -15,9 +15,9 @@ services:
       - MYSQL_PASSWORD
     expose:
     - '3306'
-    image: mariadb:10.7
+    image: mysql:8
     volumes:
-    - mariadb_var_lib:/var/lib/mysql:rw
+    - mysql8_var_lib:/var/lib/mysql:rw
   php7-apache:
     environment:
       GD_OPTS_POST_74: --with-jpeg
@@ -51,5 +51,5 @@ services:
     - ./volume/htdocs:/var/www/html:rw
 version: '3.9'
 volumes:
-  mariadb_var_lib: {}
+  mysql8_var_lib: {}
 
