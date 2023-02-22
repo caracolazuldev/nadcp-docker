@@ -1,2 +1,2 @@
 STACK_SERVICES ?= php7-apache mailhog shell-php7.yml mysql57
-ENV_INCLUDES ?= conf/project.env conf/mysql.local.env
+ENV_INCLUDES ?= conf/project.env conf/db.env

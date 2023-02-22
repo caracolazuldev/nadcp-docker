@@ -1,0 +1,2 @@
+STACK_SERVICES ?= php8-apache mailhog shell-php8.yml
+ENV_INCLUDES ?= conf/project.env conf/mysql.local.env
