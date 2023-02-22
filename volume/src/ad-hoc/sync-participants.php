@@ -1,21 +1,28 @@
 <?php
 
-$event_id = 375;
-
 chdir('/var/www/html');
 
 // load CiviCRM
 define('CIVICRM_UF', 'WordPress');
 require_once './wp-content/plugins/civicrm/civicrm/civicrm.config.php';
 
-// Retrieve Contributions using @event_id that are status, "Completed"
+// set $contrib_id from the environment
+$contrib_id = getenv('CONTRIB_ID');
+
 $params = [
-    'event_id' => $event_id,
+	'receive_date' => ['>' => "2023-01-01"],
+    'contribution_page_id' => 2,
     'contribution_status_id' => 'Completed',
 	'return' => 'id, contact_id, contribution_status_id',
     'options' => ['limit' => 0],
 ];
+
+if ($contrib_id) {
+	$params['id'] = $contrib_id;
+}
 $contributions = civicrm_api3('Contribution', 'get', $params)['values'];
+
+var_export($contributions);
 
 foreach ($contributions as $contribution) {
 	$record = (object) $contribution;
