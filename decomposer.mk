@@ -1,4 +1,7 @@
 
+# docker-compose command
+DKC = docker compose
+
 # # #
 # Validation and Derived Configurations
 # # #
@@ -74,7 +77,7 @@ $(strip \
 endef
 
 %-compose.yml: ${stack-config-includes}
-	@docker-compose --project-directory=. $(foreach f,$^,-f $f) config > $@ 2>/dev/null
+	@$(DKC) --project-directory=. $(foreach f,$^,-f $f) config > $@ 2>/dev/null
 
 .INTERMEDIATE: ${STACK_NAME}-compose.yml # enable auto-clean-up of generated files
 
@@ -150,7 +153,7 @@ endef
 # we set project-dir explicitly because we do not want it determined by include file dirs.
 #
 dkc-%: $(if $(filter-out NULL,${STACK}),docker-compose.yml) $(if $(filter-out NULL,${STACK}),.env) 
-	@docker-compose --project-dir=. $(if $(wildcard docker-compose.yml), -f docker-compose.yml) \
+	@$(DKC) --project-directory=. $(if $(wildcard docker-compose.yml), -f docker-compose.yml) \
 	$(if $(wildcard docker/${TASK}.yml), -f docker/${TASK}.yml) \
 	$(set-action) ${DK_CMP_OPTS} \
 	$(if ${WORKING_DIR},$(if $(filter rund run exec,$*),--workdir ${WORKING_DIR})) \

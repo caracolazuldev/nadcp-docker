@@ -1,6 +1,8 @@
 -include conf/project.env
 include decomposer.mk
 
+DKC = docker compose
+
 MANAGED_DIRS ?= volume/htdocs volume/home volume/logs
 
 ${MANAGED_DIRS}:
@@ -10,7 +12,7 @@ facls:
 	TASK=shell WORKING_DIR=/var/src/nadcp-stage make run RUN_CMD='make -f src/facls.mk dev'
 
 shell:
-	docker-compose exec --workdir /var/www/html shell /bin/bash
+	$(DKC) exec --workdir /var/www/html shell /bin/bash
 
 sql-cli:
 	make run TASK=mysql8-cli STACK=sql-cli
